@@ -15,7 +15,7 @@ class GithubApi(object): # Github Api Class definition
         self.headers = {'User-Agent': 'request'}
         self.api_url = "https://api.github.com/search/issues?q="
         self.repo = "repo:" + str(user_or_org) + "/" +\
-            str(repository) + "+" + "type:issue"
+            str(repository) + "+" + "type:issue" + "+" + "state:open"
         self.date_today = date.today() # Calculating date of present day 
         self.date_last_day = self.date_today - datetime.timedelta(days=1) # Calculating date of previous day
         self.date_week_ago = self.date_today - datetime.timedelta(days=7) # Calculating date of a day week ago
