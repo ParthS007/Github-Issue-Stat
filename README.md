@@ -1,5 +1,9 @@
 # Github Issue Statistics
 
+[![HitCount](http://hits.dwyl.io/ParthS007/Github-Issue-Stat.svg)](http://hits.dwyl.io/ParthS007/Github-Issue-Stat)
+![Lines of code](https://tokei.rs/b1/github/ParthS007/Github-Issue-Stat)
+
+
 It is a application which give some interesting statistics about the issues posted on a specific repository.
 
 This application provides:
