@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="ui container">
+        <div class="ui raised segment">
+
+            <h1 class="ui center aligned header">Github Issues Count</h1>
+            {% if error %}
+                <div class="ui error message">
+                    <div class="header">Action Forbidden</div>
+                    <p>{{ error }}</p>
+                </div>
+            {% endif %}
+            <form class="ui form success" action="/index" method="post">
+                    <label>Enter an URL of the Github Repository</label>
+                    <p><input type="url" id="repositoryUrl" name="repositoryUrl" required/></p>
+                    <div class="ui basic segment"></div>
+                    <p><input type="submit" id="submit" class="ui submit button" value="Submit"/></p>
+            </form>
+            {% if success %}
+                <div class="ui success message">
+                    <div class="header">Form Completed</div>
+                    <p>Please wait for the results</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

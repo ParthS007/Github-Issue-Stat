@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="ui container">    
+    <table class="ui celled striped red table">
+    <thead>
+        <tr><th colspan="3">Issue Statistics</th></tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="collapsing">Total Issues</td>
+            <td class="right aligned collapsing">{{total_issue_count}}</td>
+        </tr>
+        <tr>
+            <td>Issues in Last 24 Hrs</td>
+            <td class="right aligned">{{total_issue_last_one_day}}</td>
+        </tr>
+        <tr>
+            <td>Issues in Last 7 days</td>
+            <td class="right aligned">{{total_issue_last_week}}</td>
+        </tr>
+        <tr>
+            <td>Issues in more than 7 days</td>
+            <td class="right aligned">{{total_issue_before_last_week}}</td>
+        </tr>
+    </tbody>
+    </table>
+    <button class="ui button" onclick="window.location.href='/'">Check Another Repository</button>
+</div>
+{% endblock %}
