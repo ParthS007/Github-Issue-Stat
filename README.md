@@ -14,7 +14,7 @@ These number includes both open and closed issues in the specified period.
 ## Usage
 
 - Input a valid GitHub Repository URL.
-- Click on Button and wait for results.
+- Click on Submit Button and wait for results.
 - A table containing the above mentioned statistics will be displayed.
 
 ## Technology Used
