@@ -1,7 +1,7 @@
 #!usr/bin/python3
-from flask import Flask, render_template, flash, redirect, request
+from flask import Flask, render_template, request
 
-import re
+from utils import validate_request, extract_user_org_and_repository
 
 import github_api_issue
 
@@ -10,20 +10,23 @@ app = Flask(__name__) # Creating Flask Application Instance
 
 @app.route('/')
 @app.route('/index', methods=['GET', 'POST']) # App Route Decorator
-def submit(): # Method to be executed when above route/endpoint are hit
-    if request.method == 'POST':
-        repository_url = request.form["repositoryUrl"] # Getting repository_url from Submitted Form
-        valid_git_url = re.match("https://github.com(/.*?)*", repository_url) # Validating the URL with help of regexp
-        if valid_git_url:
-            user_or_org = repository_url.rsplit('https://github.com/')[1].rsplit('/')[0] # Extracting the User/Org name from the URL
-            repository = repository_url.rsplit('https://github.com/')[1].rsplit('/')[1] # Extracting the repository name from the URL
-            class_object = github_api_issue.GithubApi(user_or_org, repository) # Calling the GitHub API class by prviding the required arguments
-            total_issue_count = class_object.total_issue_count # Extracting the `total_issue_count` from the class object
-            total_issue_last_one_day = class_object.total_issue_last_one_day # Extracting the `total_issue_last_one_day` from the class object
-            total_issue_last_week = class_object.total_issue_last_week # Extracting the `total_issue_last_week` from the class object
-            total_issue_before_last_week = class_object.total_issue_before_last_week # Extracting the `total_issue_before_last_week` from the class object
+def submit():
+    """Method to be executed when above route/endpoint are hit
 
-            return render_template('result.html', # Sending the above info to the Template
+    Returns:
+        _type_: _description_
+    """
+    if request.method == 'POST':
+
+        # Validate git url
+        repository_url, valid_git_url = validate_request(request)
+        if valid_git_url:
+            user_or_org, repository = extract_user_org_and_repository(repository_url)
+            class_object = github_api_issue.GithubApi(user_or_org, repository) # Calling the GitHub API class by providing the required arguments
+            (total_issue_count, total_issue_last_one_day, total_issue_last_week, total_issue_before_last_week) = class_object.results_issue_stats()
+
+            # Sending the above info to the Template
+            return render_template('result.html',
                                 total_issue_count=total_issue_count,
                                 total_issue_last_one_day=total_issue_last_one_day,
                                 total_issue_last_week=total_issue_last_week,
