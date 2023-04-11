@@ -1,7 +1,5 @@
 # Github Issue Statistics
 
-[![HitCount](http://hits.dwyl.io/ParthS007/Github-Issue-Stat.svg)](http://hits.dwyl.io/ParthS007/Github-Issue-Stat)
-![Lines of code](https://tokei.rs/b1/github/ParthS007/Github-Issue-Stat)
 
 
 It is a application which give some interesting statistics about the issues posted on a specific repository.
@@ -32,3 +30,9 @@ These number includes both open and closed issues in the specified period.
 ## License
 
 GNU GENERAL PUBLIC LICENSE  Version 3
+
+## Disclaimer
+
+This project was made only to explore Github APIs and not meant to be use in production.
+
+
